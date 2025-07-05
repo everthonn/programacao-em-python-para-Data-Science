@@ -1,0 +1,72 @@
+from bs4 import BeautifulSoup
+import requests
+
+nome = []
+dia = []
+horario = []
+data_inicio = []
+
+url = 'https://gratuitos.netlify.app/'
+pagina = requests.get(url)
+html = pagina.text
+
+soup = BeautifulSoup(html, 'html.parser')
+
+# for item in soup.find_all('h5', class_ = 'text-new'):
+#     print(item.text)
+
+for item in soup.find_all('th',scope = 'row'):
+    nomee = item.text
+    nome.append(nomee)
+# print(nome)
+i = 0
+# 
+# for item in soup.find_all('table', class_ = 'table table-sm bg-light text-left'):
+        # while item % 3 ==0:
+        #      dias = item.text
+        #      dia.append(dias)
+#         for id in item.find('td'):
+#             print(id)
+index = 0.0
+inicio = 0
+for item in soup.find_all('td'):
+    if index % 3 == 0:
+        inicio = item.text + " --"
+        data_inicio.append(inicio)
+    
+    index += 1
+index = 1
+for item in soup.find_all('td'):
+     if index % 3 == 0:
+        dias = item.text + "-------"
+        dia.append(dias)
+     index += 1
+
+index = 2
+
+for item in soup.find_all('td'):
+     if index % 3 == 0:
+        horas = item.text + "-------"
+        horario.append(horas)
+     index += 1
+
+
+# index = int(1)
+# for item in soup.find_all('td'):
+#     if index == len(dia):
+#         break
+#     if index % 3 ==1 and index == 1 or (index -1)%2 == 0 and inicio != horario[index]:
+#         data = item.text + "------"
+#         data_inicio.append(data)
+#     index += 1
+
+print(dia)
+
+# for item in soup.find_all('div',class_ = 'table-responsive'):
+#     data = item.find('td')
+#     if item 
+
+
+
+# for item in soup.find_all('table', class_ = 'table table-sm bg-light text-left'):
+#         while item % 3 ==1 and (item - 1)%2 ==1:
