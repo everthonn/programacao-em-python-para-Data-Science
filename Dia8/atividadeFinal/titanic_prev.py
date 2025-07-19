@@ -165,28 +165,51 @@ def mostrar_describe():
 
 # PREVISÃO AQUI:
 
+# def fazer_previsao():
+#     features = ['Pclass','Sex','Age','Fare']
+#     X = df[features]
+#     y = df['Survived']
+
+
+#     # divisão dos Dados
+#     X_train, X_test, y_train, y_test = train_test_split(X,y, random_state = 42)
+
+#     # Treinar os Modelos
+#     model = RandomForestClassifier(n_estimators = 100, random_state=42)
+#     model.fit(X_train, y_train)
+
+#     y_pred = model.predict(X_test)
+
+#     acuracia = accuracy_score(y_test,y_pred)
+
+#     importancia = pd.Series(model.feature_importances_,index=features).sort_values(ascending=True)
+
+#     fig, ax = plt.subplots(figsize = (8, 4))
+#     importancia.plot(kind='bar',ax=ax)
+#     ax.set_title('importancia das caracteristicas de previsão')
+
 def fazer_previsao():
-    features = ['Pclass','Sex','Age','Fare']
-    x = df[features]
+    features = ['Pclass','Sex','Age','Fare'] 
+    X = df[features]
     y = df['Survived']
+    
 
 
-    # divisão dos Dados
-    X_train, X_test, y_train, y_test = train_test_split(X,y, random_state = 42)
-
-    # Treinar os Modelos
-    model = RandomForestClassifier(n_estimators = 100, random_state=42)
-    model.fit(X_train, y_train)
-
+    # divisão dos dados
+    X_train, X_test, y_train , y_test = train_test_split(X,y, random_state=42)
+    # treinar o modelo
+    model =  RandomForestClassifier(n_estimators=100, random_state=42)
+    model.fit(X_train,y_train)
     y_pred = model.predict(X_test)
 
-    acuracia = accuracy_score(y_test,y_pred)
 
-    importancia = pd.Series(model.feature_importances_,index=feature).sort_values(ascending=True)
-
-    fig, ax = plt.subplot(figsize - (8,4))
-    importancia.plot(kind='bar',ax=ax)
-    ax.set_tittle('importancia das caracteristicas de previsão')
+    # acuracia 
+    acuracia =  accuracy_score(y_test,y_pred)
+    importancia  =  pd.Series(model.feature_importances_,index=features).sort_values(ascending=True) 
+     
+    fig, ax =  plt.subplots(figsize = (8,4))
+    importancia.plot(kind='bar',ax=ax ) 
+    ax.set_title('importancia das caracteristicas da previsão') 
 
 
 
